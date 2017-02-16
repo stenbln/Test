@@ -1,0 +1,99 @@
+.videoPreview{
+  position:relative;
+  display:block;
+  margin:0 auto;
+  background-color:red;
+  width:350px;
+  height:350px;
+  background-position:center;
+  background-size: cover;
+  border: 5px solid #bbbaba;
+  border-radius: 4px;
+}
+.videoAnimated{
+    animation: myFrames 2s ease-in-out 0s 1;
+}
+.imagePlaceholder{
+  position:absolute;
+  top:0;
+  bottom:0;
+  display:block;
+  margin:0 auto;
+  background:url(https://static.pexels.com/photos/36487/above-adventure-aerial-air.jpg);
+  background-color:red;
+  width:350px;
+  height:350px;
+  background-position:center;
+  background-size: cover;
+  border: 5px solid #bbbaba;
+  border-radius: 4px;
+}
+
+
+@keyframes myFrames{
+    from{
+        background-position:left bottom;
+    }
+    to{
+        background-position:right top;
+    }
+}
+
+.textPreview{
+    color:white;
+    position:absolute;
+    bottom:10px;
+    left:10px;
+    right:10px;
+    animation:spanAnimations 2s ease-in-out 0s infinite;
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+@keyframes spanAnimations{
+    0%{
+        opacity:0;
+    }
+    80%{
+        opacity:1;
+    }
+    100%{
+        opacity:0;
+    }
+}
+
+#loadingBarContainer{
+  display:flex;
+  justify-content:center;
+  width:80vw;
+  margin:0 auto;
+  padding-top:15px;
+  padding-left:35px;
+  padding-right:35px;
+  width:100%;
+}
+
+.loadingBarPiece{
+  background-color:whitesmoke;
+  border:1px solid grey;
+  flex-shrink:1;
+  overflow: auto;
+  width:6%;
+  height:20px;
+  margin-left:1px;
+  margin-top:0px;
+}
+.animated{
+  animation:filling 5s forwards cubic-bezier(0.74, 0.79, 1, 0.24) 0s 1;  
+  width:60px;
+}
+
+
+@keyframes filling{
+    from{
+        box-shadow: inset 0px 0 0 0 #e0e0e0;
+    }
+    to{
+        box-shadow: inset 100px 0 0 0 #e0e0e0;
+    }
+}

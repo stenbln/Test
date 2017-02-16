@@ -1,0 +1,23 @@
+
+.flexEditorApp {
+    height: 100vh;
+    background: cadetblue;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: auto;
+}
+.flexEditorMain {
+    display: block; /* 1 */
+    flex-grow: 1;
+    flex-shrink: 1; /* 2 */
+    background: blanchedalmond;
+    overflow: auto;
+    padding: 0 20px;
+}
+
+.flexEditorFooter {
+    height: 50px;
+    flex-shrink: 0;
+    background: coral;
+}

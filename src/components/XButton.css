@@ -1,0 +1,17 @@
+.cancelButton{
+
+    right: 5px;
+    width: 20px;
+    height: 20px;
+    background: rgb(243, 77, 147);
+    border: 0px;
+    color: rgb(255, 255, 255);
+    position: absolute;
+    top: -17px;
+    bottom: 0;
+    margin: auto;
+    border-radius: 3px;
+}
+.invisible{
+    visibility: hidden;
+}

@@ -1,0 +1,53 @@
+.red {
+  color: orangeRed;
+}
+
+.grey {
+  color: grey;
+}
+.pullLeft{
+    float:left;
+}
+.barIcon{
+    cursor: move;
+    padding-top: 2px;
+    padding-left: 5px;
+}
+
+.mainDiv{
+width: 99%;
+border: 5px solid whitesmoke;
+margin-bottom:10px;
+}
+.item{
+font-family:Montserrat,Helvetica Neue,Helvetica,arial,sans-serif;
+text-align: center;
+background-color: #FFF;
+padding:10px;
+box-shadow: 3px 15px 12px 5px rgba(0, 0, 0, 0.2), 0 -5px 5px -5px rgba(0,0,0,.2);
+padding-top: 5px;
+padding-bottom: 5px;
+font-size: small;
+text-align: left;
+padding-left: 7px;
+}
+
+.info{
+background: whitesmoke;
+font-family: Montserrat,Helvetica Neue,Helvetica,arial,sans-serif;
+font-size:smaller;
+font-weight: 600;
+text-align:right;
+cursor:default;
+}
+
+.list{
+    background-color: #FFFFFF;
+    border: 1px solid #EFEFEF;
+    padding-left:0px;
+}
+.infoTextForSceneNumber{
+    font-family: Montserrat,Helvetica Neue,Helvetica,arial,sans-serif;
+    font-size: smaller;
+    padding-bottom: 20px;
+}
