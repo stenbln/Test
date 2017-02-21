@@ -106,28 +106,49 @@ const styles = {
     innerDiv:{
       textAlign:'left',
       color:'grey',
-      paddingLeft:5,
+      paddingLeft:20,
       backgroundColor:'#f3f3f3'
+    },
+    position:{
+      position:'relative'
+    },
+    textPreview:{
+      color:'white',
+      position:'absolute',
+      top:40,
+      left:40,
+      right:40,
+      fontSize:'1.1em',
+      fontWeight:'500',
     },
 };
 
-const SortableItem = SortableElement(({value,dataitemID}) => {
+const SortableItem = SortableElement(({value,dataitemID,items}) => {
+  var substringedArray = "a";
+  if(typeof items[dataitemID]=="undefined"||items[dataitemID].length==0){
+    substringedArray = "";
+  }else if(items[dataitemID].length<60){
+    substringedArray=items[dataitemID];
+  }else if(items[dataitemID].length>60){
+    substringedArray = items[dataitemID].substring(0,60)+ "...";
+  }
     return (
-      <div key={'item_'+dataitemID} >
+      <div style={styles.position} key={'item_'+dataitemID} >
                 <Image 
                   style={styles.img}
                   src={value} thumbnail responsive>
                 </Image>
-                <div style={styles.innerDiv}>Composition {dataitemID+1}</div>
+                <span style={styles.textPreview}>{substringedArray}</span>
+                <div style={styles.innerDiv}>Scene {dataitemID+1}</div>
         </div>
     )}
 );
 
-const SortableList = SortableContainer(({items}) => {
+const SortableList = SortableContainer(({items,compositionItems}) => {
     return (
         <ul className="list">
-            {items.map((value, index) =>
-                <SortableItem key={`item-${index}`} dataitemID={index} index={index} value={value} />
+            {compositionItems.map((value, index) =>
+                <SortableItem items={items} key={`item-${index}`} dataitemID={index} index={index} value={value} />
             )}
         </ul>
     );
@@ -150,7 +171,7 @@ class SortableCompositions extends Component {
     render() {
         return (
           <div id="sortableDiv">
-            <SortableList items={this.props.compositionItems} lockAxis="y" onSortEnd={this.onSortEnd} />
+            <SortableList items={this.props.items} compositionItems={this.props.compositionItems} lockAxis="y" onSortEnd={this.onSortEnd} />
           </div>
         )
     }

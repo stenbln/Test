@@ -68,8 +68,8 @@ class SplitContainer extends Component{
           className="right-pane"
           minSize="200">
           <div className="pane-content">
-            <Title title="Compositions"></Title>
-            <SortableCompositions compositionItems={this.props.compositionItems}/>
+            <Title title="Scenes"></Title>
+            <SortableCompositions items={this.props.items} compositionItems={this.props.compositionItems}/>
           </div>
         </ReflexElement>
 

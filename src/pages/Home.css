@@ -1,0 +1,76 @@
+.mainHeader{
+    background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEMAAABkCAMAAADqvX3PAAAAKlBMV…SzhMYcRPRZNYmgdjA1FyahcKQIqpKZs8N0TMd0TMd0/BvHF8n9f8tHo7HcAAAAAElFTkSuQmCC),linear-gradient(to left,#7b4397,#4aa3a5)
+}
+
+.download{
+    background:linear-gradient(to right,#FF9800,#FF5722)
+}
+
+.homepagevideoAnimated{
+    animation: homepagemyFrames 3s both ease-in-out 0s 1;
+}
+.homepagevideoAnimatedDelay{
+    animation: homepagemyFrames 3s both ease-in-out 3s 1;
+}
+
+
+
+@keyframes homepagemyFrames{
+    0%{
+        opacity:0;
+        background-position:center center;
+    }
+    0.0001%{
+        opacity:1;
+    }
+    99.9999%{
+        opacity:1;
+        background-position:right center;
+    }
+    100%{
+        opacity:0;
+        background-position:right center;
+    }
+}  
+@keyframes homepagemyFrames1{
+    0%{
+        opacity:0;
+        background-position:center center;
+    }
+    0.0001%{
+        opacity:1;
+    }
+    99.9999%{
+        opacity:1;
+        background-position:right center;
+    }
+    100%{
+        opacity:0;
+        background-position:right center;
+    }
+}    
+
+.homepageTextPreview{
+    z-index:99;
+    color:white;
+    position:absolute;
+    bottom:50%;
+    left:7%;
+    right:7%;
+    animation: homePageSpanAnimations 5s both ease-in-out 0s infinite;
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+
+@keyframes homePageSpanAnimations{
+    0%{
+        opacity:0;
+    }
+    80%{
+        opacity:1;
+    }
+    100%{
+        opacity:0;
+    }
+}

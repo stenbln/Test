@@ -42,7 +42,7 @@ var RawText = React.createClass({
                   onMouseLeave={this.handleMouse}
                   onClick={this.handleClick}
                   matchElement='mark' 
-                  matchStyle={{
+                  matchStyle={{ 
                     cursor:'pointer',
                     backgroundColor:'rgba(205, 92, 92, 0.34)',
                     borderTopLeftRadius:'4px',

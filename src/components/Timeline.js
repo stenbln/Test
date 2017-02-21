@@ -7,7 +7,7 @@ import Button from 'react-bootstrap/lib/Button';
 var PreviewModal = require('./PreviewModal');
 
 
-const TimelineBars = ({compositionItems})=> {
+const TimelineBars = ({items,compositionItems})=> {
     const totalDesiredLength = 12;
     const determineColor = (index,compositionItems) =>{
         var overflow = compositionItems.length>totalDesiredLength;
@@ -62,7 +62,7 @@ const TimelineBars = ({compositionItems})=> {
 
     return (
         <div className="main">
-        <PreviewModal compositionItems={compositionItems}/>
+        <PreviewModal items={items} compositionItems={compositionItems}/>
         {
             newArray.map((value,index)=>{
                 return determineColor(index,compositionItems)
@@ -83,7 +83,7 @@ export default class Timeline extends Component{
     render(){
         return(
             <div>
-              <TimelineBars compositionItems={this.props.compositionItems}/>
+              <TimelineBars items={this.props.items} compositionItems={this.props.compositionItems}/>
             </div>
         )
     }

@@ -1,17 +1,21 @@
+.backgroundImageForVideoPreview{
+  background:url("https://img04.rl0.ru/882ff4adc17acb4fbac79e8de420385c/c512x512/cdn3.iconfinder.com/data/icons/follow-me/256/YouTube-512.png");
+}
+
 .videoPreview{
   position:relative;
   display:block;
   margin:0 auto;
-  background-color:red;
+  background-color:#f7eded;
   width:350px;
   height:350px;
   background-position:center;
   background-size: cover;
-  border: 5px solid #bbbaba;
-  border-radius: 4px;
+  border: 1px solid grey;
+  border-radius: 0px;
 }
 .videoAnimated{
-    animation: myFrames 2s ease-in-out 0s 1;
+    animation: myFrames 5s both ease-in-out 0s 1;
 }
 .imagePlaceholder{
   position:absolute;
@@ -23,29 +27,37 @@
   background-color:red;
   width:350px;
   height:350px;
-  background-position:center;
-  background-size: cover;
-  border: 5px solid #bbbaba;
-  border-radius: 4px;
+  background-position:center !important;/*if not specified as important, the properties get deleted when javascript programatically changes background url*/
+  background-size: cover !important;
 }
 
 
 @keyframes myFrames{
-    from{
-        background-position:left bottom;
+    0%{
+        opacity:0;
+        background-position:left center;
     }
-    to{
-        background-position:right top;
+    0.0001%{
+        opacity:1;
+    }
+    99.9999%{
+        opacity:1;
+        background-position:right center;
+    }
+    100%{
+        opacity:0;
+        background-position:right center;
     }
 }
 
 .textPreview{
+    z-index:99;
     color:white;
     position:absolute;
     bottom:10px;
     left:10px;
     right:10px;
-    animation:spanAnimations 2s ease-in-out 0s infinite;
+    animation:spanAnimations 5s both ease-in-out 0s 1;
     font-size: 1.5em;
     font-weight: bold;
 }
@@ -74,13 +86,12 @@
 }
 
 .loadingBarPiece{
-  background-color:whitesmoke;
-  border:1px solid grey;
+  background-color:rgba(255, 132, 132, 0.2);
+  border-radius:3px;
   flex-shrink:1;
   overflow: auto;
-  width:6%;
   height:20px;
-  margin-left:1px;
+  margin-left:2px;
   margin-top:0px;
 }
 .animated{

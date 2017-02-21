@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import './App.css';
 import SortableComponent from '../components/SortableComponent';
 import SortableStore from '../stores/SortableStore';
 import CompositionStore from '../stores/CompositionStore';
@@ -36,7 +35,7 @@ class Editor extends Component {
       <div>
           {/*<SortableComponent items={this.state.items} /><br/><br/><br/>*/}
           <SplitContainer items={this.state.items} compositionItems={this.state.compositionItems}/>
-          <Timeline compositionItems={this.state.compositionItems}/>
+          <Timeline items={this.state.items} compositionItems={this.state.compositionItems}/>
       </div>
     );
   }

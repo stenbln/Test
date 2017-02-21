@@ -3,6 +3,9 @@ import {Navbar,Nav,NavItem,NavDropdown,MenuItem} from 'react-bootstrap/';
 import {Link} from 'react-router';
 
 var NavigationBar = React.createClass({
+    onSelect:function(evt){
+      console.log(evt);
+    },
     render:function(){
         return(
         <div>
@@ -14,17 +17,14 @@ var NavigationBar = React.createClass({
              <Navbar.Toggle />
            </Navbar.Header>
            <Navbar.Collapse>
-             <Nav>
-                  <NavItem href="#"><Link eventKey={1} to="editor">Editor</Link></NavItem>
-                  <NavItem eventKey={2} href="#"><Link to="settings">Settings</Link></NavItem>
-             </Nav>
+
              <Nav pullRight>
                <NavDropdown eventKey={3} title="Profile" id="basic-nav-dropdown">
-                 <MenuItem eventKey={3.1}>My videos</MenuItem>
-                 <MenuItem eventKey={3.2}>Settings</MenuItem>
-                 <MenuItem eventKey={3.3}>Something else here</MenuItem>
+                 <MenuItem href="/#/my-videos" onSelect={this.onSelect} to="settings" eventKey="my-videos">My videos</MenuItem>
+                 <MenuItem href="/#/editor" onSelect={this.onSelect} eventKey="editor">Editor</MenuItem>
+                 <MenuItem href="/#/settings" onSelect={this.onSelect} eventKey={3.3}>Settings</MenuItem>
                  <MenuItem divider />
-                 <MenuItem eventKey={3.3}>Logout</MenuItem>
+                 <MenuItem href="/#/logout" onSelect={this.onSelect} eventKey="logout">Logout</MenuItem>
                </NavDropdown>
              </Nav>
            </Navbar.Collapse>
