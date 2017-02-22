@@ -24,31 +24,54 @@ class Home extends Component {
 
 componentDidMount(){
   //manage animations for the homepage
-  //#0 is first background photo, #1 first foreground text
-  //#2 is the second background photo, #3 is the second foreground text
-
+  //#0 first  photo, 
+  //#1 first  text
+  //#2 second  photo, 
+  //#3 second  text
+  //#4 third photo
+  //#5 third text
+ 
   $("#2").removeClass("homepagevideoAnimated");
-  $("#2").addClass("homepagevideoAnimatedDelay");//delayed animation
+  $("#3").removeClass("homepagevideoAnimated");
+  $("#4").removeClass("homepagevideoAnimated");
+  $("#5").removeClass("homepagevideoAnimated");
+  $("#2").addClass("homepagevideoAnimatedDelay3");
+  $("#3").addClass("homepagevideoAnimatedDelay3 ");
+  $("#4").addClass("homepagevideoAnimatedDelay6");
+  $("#5").addClass("homepagevideoAnimatedDelay6");
 
 
  $("#0").on("animationend",()=>{
     console.log("Works first")
   });
 
- $("#2").on("animationend",()=>{
-    console.log("Works second");
+
+ $("#4").on("animationend",()=>{
+    console.log("Works last");
 
   $("#0").removeClass("homepagevideoAnimated");
   $("#1").removeClass("homepagevideoAnimated");
-  $("#2").removeClass("homepagevideoAnimatedDelay");
+  $("#2").removeClass("homepagevideoAnimatedDelay3");
+  $("#3").removeClass("homepagevideoAnimatedDelay3");
+  $("#4").removeClass("homepagevideoAnimatedDelay6");
+  $("#5").removeClass("homepagevideoAnimatedDelay6");
 
+  //without this the animation would not be restarted
   void $("#0").outerWidth();
   void $("#1").outerWidth();
   void $("#2").outerWidth();
+  void $("#3").outerWidth();
+  void $("#4").outerWidth();
+  void $("#5").outerWidth();
 
   $("#0").addClass("homepagevideoAnimated");
   $("#1").addClass("homepagevideoAnimated");
-  $("#2").addClass("homepagevideoAnimatedDelay");    
+  $("#2").addClass("homepagevideoAnimatedDelay3");  
+  $("#3").addClass("homepagevideoAnimatedDelay3");
+  $("#4").addClass("homepagevideoAnimatedDelay6");
+  $("#5").addClass("homepagevideoAnimatedDelay6");
+
+  
 });
 
  
@@ -71,7 +94,7 @@ componentDidMount(){
                 <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                     <span className="sr-only">Toggle navigation</span> Menu <i className="fa fa-bars"></i>
                 </button>
-                <a className="navbar-brand page-scroll" href="#page-top" style={{color:'grey'}}>Start Bootstrap</a>
+                <a className="navbar-brand page-scroll" href="#page-top" style={{color:'grey'}}>Photonize</a>
             </div>
 
             <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -96,7 +119,7 @@ componentDidMount(){
                 <div className="col-sm-7">
                     <div className="header-content">
                         <div className="header-content-inner">
-                            <h1>We convert your text articles into videos in a matter of seconds</h1>
+                            <h1>Convert your text articles into videos in a matter of seconds</h1>
                             <a href="#download" className="btn btn-outline btn-xl page-scroll">Start Now for Free!</a>
                         </div>
                     </div>
@@ -107,7 +130,7 @@ componentDidMount(){
                             <div className="device" style={{top:'-10%'}}>
                                 <div className="screen">
                                     
-                                    <AtvImg className="homepagevideoAnimated" layers={[ images.car, images.front,'http://interfacelift.com/wallpaper/previews/04077_monuments_672x420.jpg']} staticFallback="http://kloc.pm/images/kloc-icon-flattened.jpg" isStatic={false} className={'thisIsOptional'} style={{ width: 375, height: 260,position:'absolute',top:'20%',left:'4%'}} />
+                                    <AtvImg className="homepagevideoAnimated" layers={[ images.cat, images.front, images.travel, images.front1, images.car, images.front2]} staticFallback="http://kloc.pm/images/kloc-icon-flattened.jpg" isStatic={false} className={'thisIsOptional'} style={{ width: 375, height: 260,position:'absolute',top:'20%',left:'4%'}} />
                                     <img src={images.skeletonScreen} className="img-responsive" alt=""/>
                                 </div>
                                 <div className="button">
@@ -120,12 +143,15 @@ componentDidMount(){
         </div>
     </header>
 
-    <section id="download" className="download bg-primary text-center">
+    <section id="download" className="download bg-primary text-center" style={{paddingTop:50,paddingBottom:50}}>
         <div className="container">
             <div className="row">
                 <div className="col-md-8 col-md-offset-2">
-                    <h2 className="section-heading">Discover what all the buzz is about!</h2>
-                    <p>We use artificial intelligence to help you create your perfect video summary!</p>
+                <h1 className="section-heading">Is this even possible?</h1>
+                  <p>Yes! We use artificial intelligence to automatically help you create a perfect video!</p>
+                  <img style={{height:'100%',width:'100%'}}src={images.howwedoit}/>
+                    {/*<h2 className="section-heading">Discover what all the buzz is about!</h2>
+                    <p>Is this even possible? Yes! We use artificial intelligence to automatically help you create a perfect video!</p>*/}
                     <div className="badges">
                         {/*<a className="badge-link" href="#"><img src={images.google_play_badge} alt=""/></a>
                         <a className="badge-link" href="#"><img src={images.app_store_badge} alt=""/></a>*/}
@@ -148,11 +174,11 @@ componentDidMount(){
             </div>
             <div className="row">
                 <div className="col-md-4">
-                    <div className="device-container">
-                        <div className="device-mockup iphone6_plus portrait white">
+                    <div className="device-container" style={{paddingTop:200}}>
+                        <div className="device-mockup macbook">
                             <div className="device">
                                 <div className="screen">
-                                    <img src={images.skeletonScreen} className="img-responsive" alt=""/> </div>
+                                    <img src={images.screenshot} className="img-responsive" alt=""/> </div>
                                 <div className="button">
                                 </div>
                             </div>
@@ -165,8 +191,8 @@ componentDidMount(){
                             <div className="col-md-6">
                                 <div className="feature-item">
                                     <i className="icon-screen-smartphone text-primary"></i>
-                                    <h3>Video is the future of Mobile</h3>
-                                    <p className="text-muted">Creation of videos has never been easier!</p>
+                                    <h3>Video is the king of mobile</h3>
+                                    <p className="text-muted">Your mobile audience enjoys watching video content on their phones!</p>
                                 </div>
                             </div>
                             <div className="col-md-6">
@@ -189,7 +215,7 @@ componentDidMount(){
                                 <div className="feature-item">
                                     <i className="icon-lock-open text-primary"></i>
                                     <h3>Creative Commons license</h3>
-                                    <p className="text-muted">We have huge collection of images and videos that you can use even commercially!</p>
+                                    <p className="text-muted">We have huge collection of images and videos that you can use for commercial purposes!</p>
                                 </div>
                             </div>
                         </div>
@@ -199,7 +225,7 @@ componentDidMount(){
             </div>
     </section>
 
-    <section className="cta">
+    <section className="cta" >
         <div className="cta-content">
             <div className="container">
                 <h2>Stop waiting.<br/>Start building.</h2>

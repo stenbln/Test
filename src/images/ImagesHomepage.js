@@ -5,7 +5,17 @@ import demo_screen_1 from './demo-screen-1.jpg'
 import google_play_badge from './google-play-badge.svg'
 import skeletonScreen from './skeletonScreen.png'
 import front from './front.png'
+import front1 from './front1.png'
+import front2 from './front2.png'
 import car from './car.jpeg'
+import travel from './travel.gif'
+import cat from './cat.gif'
+import screenshot from './screenshot.jpg'
+import howwedoit from './howwedoit.png'
+
+
+
+
 
 
 
@@ -17,6 +27,12 @@ export default {
   google_play_badge,
   skeletonScreen,
   front,
-  car
+  car,
+  travel,
+  cat,
+  front1,
+  front2,
+  screenshot,
+  howwedoit
 
 }

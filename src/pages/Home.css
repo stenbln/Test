@@ -1,17 +1,24 @@
 .mainHeader{
-    background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEMAAABkCAMAAADqvX3PAAAAKlBMV…SzhMYcRPRZNYmgdjA1FyahcKQIqpKZs8N0TMd0TMd0/BvHF8n9f8tHo7HcAAAAAElFTkSuQmCC),linear-gradient(to left,#7b4397,#4aa3a5)
+    background:linear-gradient(to left,#7b4397,#4aa3a5)
 }
 
 .download{
-    background:linear-gradient(to right,#FF9800,#FF5722)
+    /*background:linear-gradient(to right,#FF9800,#FF5722)*/
+    background:linear-gradient(to right,#ab5470,#ef410d);
+
 }
 
 .homepagevideoAnimated{
     animation: homepagemyFrames 3s both ease-in-out 0s 1;
 }
-.homepagevideoAnimatedDelay{
+.homepagevideoAnimatedDelay3{
     animation: homepagemyFrames 3s both ease-in-out 3s 1;
 }
+
+.homepagevideoAnimatedDelay6{
+    animation: homepagemyFrames 3s both ease-in-out 6s 1;
+}
+
 
 
 
