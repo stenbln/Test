@@ -1,6 +1,7 @@
 import React from 'react';
 import Chip from 'material-ui/Chip';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import * as ImagesActions from '../actions/ImagesActions'
 
 
 const styles = {
@@ -18,18 +19,22 @@ const styles = {
 
 var Chips = React.createClass({
     getInitialState:function(){
-        return {chipData: [
-            {key: 0, label: 'Clouds'},
-            {key: 1, label: 'Water'},
-            {key: 2, label: 'Ocean'},
-            {key: 3, label: 'ReactJS'},
-        ]}
+        return {chipData: this.props.chipData}
+        console.log("componentWill loaded ")
+    },
+    componentDidMount:function(){
+        console.log("componentWill mount ")
     },
     handleRequestDelete:function(key){
-        this.chipData = this.state.chipData;
+        //console.log("new state DATA   ", this.state.chipData)
+        this.chipData = this.props.chipData;
         const chipToDelete = this.chipData.map((chip) => chip.key).indexOf(key);
         this.chipData.splice(chipToDelete, 1);
+        this.chipData.map((chip,index) => chip.key=index).indexOf(key);
         this.setState({chipData: this.chipData});
+        //console.log("new spliced CHIP DATA   ", this.chipData)
+        ImagesActions.updateChips(this.chipData);
+        ImagesActions.loadImages(this.chipData.map((chip)=>chip.label),1); //send array of updated chips e.g. ["Cloudsss", "Water", "Ocean", "ReactJS"] and page number of 1
     },
     renderChip:function(data,i){
         return(
@@ -46,7 +51,7 @@ var Chips = React.createClass({
     render:function(){
         return (
         <div style={styles.wrapper}>
-            {this.state.chipData.map(this.renderChip, this)}
+            {this.props.chipData.map(this.renderChip, this)}
         </div>
     )}
 

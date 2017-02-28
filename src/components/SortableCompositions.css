@@ -1,0 +1,36 @@
+.compositionItem{
+    width:200px;
+    margin:0 auto;
+    box-shadow: 0px 6px 16px 2px rgba(0, 0, 0, 0.2), 0 -5px 5px -5px rgba(0,0,0,.2);
+    margin-bottom:10px;
+
+}
+
+.compositionImageItem{
+    position:relative;
+    background-image: url('http://img1.jurko.net/wall/paper/donald_duck_4.jpg');
+    width: 200px;
+    height: 100px;
+    background-position: center;
+    /* Make the background image cover the area of the <div>, and clip the excess */
+    background-size: cover;
+}
+
+.compositionInfoDiv{
+    background:#f5f5f5;
+    text-align:left;
+    font-family: Montserrat,Helvetica Neue,Helvetica,arial,sans-serif;
+    padding-left: 7px;
+    color:grey;
+}
+
+.spanOnTopOfComposition{
+    text-align:left;
+    color:white;
+    position:absolute;
+    top:38px;
+    left:7px;
+    right:5px;
+    font-size:1.1em;
+    font-weight:500;
+}

@@ -77,67 +77,63 @@ if (!Array.from) {
   }());
 }
 import {SortableContainer, SortableElement, SortableHandle, arrayMove} from 'react-sortable-hoc';
-import * as CompositionActions from '../actions/CompositionActions'
-import EditableDiv from '../components/EditableDiv';
+import * as SortableActionsAutomatic from '../actions/SortableActionsAutomatic'
+import EditableDivAutomatic from '../components/EditableDivAutomatic';
 import XButton from '../components/XButton'
 import './SortableComponent.css'; 
 import 'font-awesome/css/font-awesome.css';
 import 'react-tooltip-component/lib/tooltip.css';
 import Tooltip from 'react-tooltip-component';
-import Image from 'react-bootstrap/lib/Image';
-var CompositionItem = require ('../components/CompositionItem');
 
+const DragHandle = SortableHandle(({dataitemID}) => <i className="barIcon pullLeft fa fa-bars" aria-hidden="false"><span className="infoTextForSceneNumber"> <b>Scene {dataitemID+1}</b></span></i>); // This can be any component you want
 
-const SortableItem = SortableElement(({value,dataitemID,items}) => {
-
-  var substringedArray = "a";
-  if(typeof items[dataitemID]=="undefined"||items[dataitemID].length==0){
-    substringedArray = "";
-  }else if(items[dataitemID].length<60){
-    substringedArray=items[dataitemID];
-  }else if(items[dataitemID].length>60){
-    substringedArray = items[dataitemID].substring(0,60)+ "...";
-  }
+const SortableItem = SortableElement(({value,dataitemID}) => {
     return (
-      <div  key={'item_'+dataitemID} >
-
-                <CompositionItem dataitemID={dataitemID} value={value} substringedArray={substringedArray}/>
-
-        </div>
+      <div className="mainDiv">
+          <div className="item">
+              <EditableDivAutomatic dataitemID={dataitemID} textValue={value}></EditableDivAutomatic>
+          </div>
+          <div id="infoDiv" className={value.length>160 ? 'info red' : 'info grey'} >
+              <DragHandle dataitemID={dataitemID}/>
+              <Tooltip title='Max characters per scene' position='bottom'>
+                <span>{value.length}/160</span>
+              </Tooltip>
+          </div>
+      </div>
     )}
 );
 
-const SortableList = SortableContainer(({items,compositionItems}) => {
+const SortableList = SortableContainer(({items}) => {
     return (
         <ul className="list">
-            {compositionItems.map((value, index) =>
-                <SortableItem items={items} key={`item-${index}`} dataitemID={index} index={index} value={value} />
+            {items.map((value, index) =>
+                <SortableItem key={`item-${index}`} dataitemID={index} index={index} value={value} />
             )}
         </ul>
     );
 });
 
-class SortableCompositions extends Component {
+class SortableComponentAutomatic extends Component {
     constructor(props){
         super(props);
         this.updateSortables = this.updateSortables.bind(this);
     }
     updateSortables(items){
-        CompositionActions.updateSortables(items);
+        SortableActionsAutomatic.updateSortables(items);
     }
 
     onSortEnd = ({oldIndex, newIndex}) => {
-        let items =  arrayMove(this.props.compositionItems, oldIndex, newIndex)
+        let items =  arrayMove(this.props.itemsAutomatic, oldIndex, newIndex)
         this.updateSortables(items);
     //need action here
     };
     render() {
         return (
-          <div id="sortableDivComposition">
-            <SortableList items={this.props.items} compositionItems={this.props.compositionItems} lockAxis="y" onSortEnd={this.onSortEnd} />
+          <div className={this.props.loader?'displayNone':''} id="sortableDivAutomatic">
+            <SortableList items={this.props.itemsAutomatic} lockAxis="y" useDragHandle={true} onSortEnd={this.onSortEnd} />
           </div>
         )
     }
 }
 
-export default SortableCompositions;
+export default SortableComponentAutomatic;

@@ -5,6 +5,8 @@ import StackGrid from "react-stack-grid";
 import Image from 'react-bootstrap/lib/Image';
 import { easings } from "react-stack-grid/lib/";
 import { transitions } from "react-stack-grid/lib/";
+var Spinner = require('react-spinkit');
+import './RawText.css'
 
 const transition = transitions.scaleDown;
 
@@ -57,19 +59,21 @@ const images = [
 
 var StackedImages = React.createClass({
   render: function() {
-    var captionList = images.map(function(cap,i){
+    var captionList = this.props.images.map(function(cap,i){
             return (
-              <div key={'cap_'+i} >
+              <div key={'image_preview_id'+i} >
                 <Image 
                   style={styles.img}
-                  src={cap.src} thumbnail responsive>
+                  src={cap.preview} thumbnail responsive>
                 </Image>
               </div>)
     });
     
     return (
       <div style={{width:'100%'}}>
+      <Spinner className={this.props.imagesLoader?'':'displayNone'} style={{paddingTop:'15% '}} spinnerName='three-bounce' />
       <StackGrid
+        className={this.props.imagesLoader?'displayNone':''}
         monitorImagesLoaded
         columnWidth={200}
         duration={600}

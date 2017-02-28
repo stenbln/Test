@@ -5,6 +5,11 @@ label{
   cursor:pointer;
 }
 
+.btn{
+  text-transform: none !important;
+  letter-spacing: 0px !important;
+}
+
 .App {
   text-align: center;
 }

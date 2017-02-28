@@ -1,11 +1,10 @@
 //import React, { Component } from 'react';
 var React = require('react');
-var captions = require('./captions.js');
-var ImageSearchBar = require('./ImageSearchBar');
+var captions = require('./captions.js'); //old code, can delete
 import Image from 'react-bootstrap/lib/Image';
-var MediaTabBar = require('./MediaTabBar');//change name to tab
-var StackedImages = require('./StackedImages');
-import * as CompositionActions from '../actions/CompositionActions'
+var MediaTabBar = require('./MediaTabBar');
+import * as CompositionActions from '../actions/CompositionActions';
+
 
 const styles = {
     wrapper: {
@@ -32,25 +31,17 @@ var BasePhotosComponent = React.createClass({
       CompositionActions.pushNewComposition(src)
     }
   },
+
+
+
   render: function() {
-    var captionList = captions.map(function(cap,i){
-            return (
-              <div key={'cap_'+i} >
-                <Image
-                  style={styles.img}
-                  src={cap.color} thumbnail responsive>
-                </Image>
-              </div>)
-    },this);
-    
+
     return (
       <div onClick={this.handleClick}  style={{width:'100%'}}>
-      <MediaTabBar/>
-        <ImageSearchBar/>
-        {/*<div style={styles.wrapper}>
-          {captionList}
-        </div>*/}
-        <StackedImages/>
+      <MediaTabBar page={this.props.page} chipData={this.props.chipData} images={this.props.images} imagesLoader={this.props.imagesLoader}/>
+        
+
+        
       </div>
     );
   }

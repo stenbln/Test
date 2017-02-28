@@ -83,7 +83,7 @@ export default class Timeline extends Component{
     render(){
         return(
             <div>
-              <TimelineBars items={this.props.items} compositionItems={this.props.compositionItems}/>
+              <TimelineBars items={this.props.currentActiveState=="Manual"?this.props.items:this.props.itemsAutomatic} compositionItems={this.props.compositionItems}/>
             </div>
         )
     }

@@ -2,11 +2,10 @@ import {EventEmitter} from "events";
 import dispatcher from '../dispatcher';
 import ReactDOM from 'react-dom'
 
-class SortableStore extends EventEmitter{
+class SortableStoreAutomatic extends EventEmitter{
     constructor(){
         super();
-        this.sortableItems = ['Title goes here']; 
-        this.currentActiveState = "Manual";
+        this.sortableItems = []; 
         this.createRange = this.createRange.bind(this);
         this.setCurrentCursorPosition = this.setCurrentCursorPosition.bind(this);
         this.referenceElement = this.referenceElement.bind(this);
@@ -14,18 +13,15 @@ class SortableStore extends EventEmitter{
     }
     referenceElement(dataitemID){
         if(typeof dataitemID === 'undefined'){
-            return document.getElementById('sortableDiv');
+            return document.getElementById('sortableDivAutomatic');
         }else{
-            return ReactDOM.findDOMNode(document.getElementById('sortableDiv')).childNodes[0].childNodes[dataitemID].childNodes[0].childNodes[0];
+            return ReactDOM.findDOMNode(document.getElementById('sortableDivAutomatic')).childNodes[0].childNodes[dataitemID].childNodes[0].childNodes[0];
         }
     }
     getAll(){
         console.log("Get all is called ", this.sortableItems);
         //this.sortableItems=this.sortableItems.filter((val)=> val!=="") //remove empty items in the array eg. ["a", "", "b", " c i d"] => ["a", "b", " c i d"]
-        return {
-            items:this.sortableItems,
-            currentActiveState:this.currentActiveState
-        };
+        return this.sortableItems;
     }
     updateSortableList(items){
         //console.log("Sortable List is updated now ", items)
@@ -205,38 +201,37 @@ class SortableStore extends EventEmitter{
         this.sortableItems.push(sentence);
         this.emit("change");
     }
-    setCurrentActiveState(currentActiveState){
-        //console.log("CAlled to toggle active from sortable store ",currentActiveState)
-        this.currentActiveState = currentActiveState;
-        this.emit("change");
+
+    alertAboutFailedFetchCaptionsError(){
+        alert("Failed to automatically summarize the content, please try again");
     }
 
     handleActions(action){
         switch(action.type){
-            case "UPDATE_SORTABLE_ITEMS":
+            case "UPDATE_SORTABLE_ITEMS_AUTOMATIC":
                 this.updateSortableList(action.items);
                 break;
-            case "CHANGE_PARTICULAR_ITEM":
+            case "CHANGE_PARTICULAR_ITEM_AUTOMATIC":
                 this.changeParticularItem(action.item,action.index);
                 break;
-            case "ADD_NEW_ITEM":
+            case "ADD_NEW_ITEM_AUTOMATIC":
                 this.addNewItem(action.item,action.index);
                 break;
-            case "DELETE_ITEM":
+            case "DELETE_ITEM_AUTOMATIC":
                 this.deleteItem(action.index,action.caretPos,action.fieldValueAfterPressingDelete);
                 break;
-            case "PUSH_ITEM_TO_STACK":
+            case "PUSH_ITEM_TO_STACK_AUTOMATIC":
                 this.pushToStack(action.sentence);
                 break;
-            case "SET_CURRENT_ACTIVE_STATE":
-                this.setCurrentActiveState(action.currentActiveState);
+            case "FETCH_SORTABLE_ITEMS_AUTOMATIC_ERROR":
+                this.alertAboutFailedFetchCaptionsError();
                 break;
 
         }
-        console.log("Sortable Store recevied an action :",action);
+        console.log("Sortable Store  AUTOMATIC recevied an action :",action);
     }
 }
 
-const sortableStore = new SortableStore();
-dispatcher.register(sortableStore.handleActions.bind(sortableStore));
-export default sortableStore;
+const sortableStoreAutomatic = new SortableStoreAutomatic();
+dispatcher.register(sortableStoreAutomatic.handleActions.bind(sortableStoreAutomatic));
+export default sortableStoreAutomatic;

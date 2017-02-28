@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 var RawText = require('./RawText');
 var BasePhotosComponent = require('./BasePhotosComponent');
 var StackedImages = require('./StackedImages');
+var CaptionsTabBar = require('./CaptionsTabBar');
 import SortableComponent from '../components/SortableComponent';
 //var List = require('./SortableItem');
 var Title = require('./Title');
@@ -21,6 +22,7 @@ import {
 
 
 class SplitContainer extends Component{
+
   render(){
     return (
     <div style={{height:'calc(100vh - 120px)',textAlign:'center'}}>
@@ -32,7 +34,7 @@ class SplitContainer extends Component{
           minSize="200">
           <div className="pane-content">
             <Title title="Sentences"></Title>
-            <RawText/>
+            <RawText loader={this.props.loader} sentences={this.props.sentences}/>
           </div>
         </ReflexElement>
 
@@ -44,7 +46,8 @@ class SplitContainer extends Component{
           minSize="200">
           <div className="pane-content">
             <Title title="Captions"></Title>
-            <SortableComponent items={this.props.items}/>
+            <CaptionsTabBar currentActiveState={this.props.currentActiveState} loader={this.props.loader} items={this.props.items} itemsAutomatic={this.props.itemsAutomatic}/>
+            
           </div>
         </ReflexElement>
 
@@ -53,10 +56,10 @@ class SplitContainer extends Component{
         <ReflexElement className="middle-pane"
           minSize="200"
           maxSize="15000">
-          <div className="pane-content">
+          <div id="imageResults" style={{height:'100%',overflow:'scroll'}}  className="pane-content">
             <Title title="Media"></Title>
             <label>
-              <BasePhotosComponent/>
+              <BasePhotosComponent page={this.props.page} chipData={this.props.chipData} images={this.props.images} imagesLoader={this.props.imagesLoader}/>
             </label>
           </div>
         </ReflexElement>
@@ -69,7 +72,7 @@ class SplitContainer extends Component{
           minSize="200">
           <div className="pane-content">
             <Title title="Scenes"></Title>
-            <SortableCompositions items={this.props.items} compositionItems={this.props.compositionItems}/>
+            <SortableCompositions items={this.props.currentActiveState=="Manual"?this.props.items:this.props.itemsAutomatic} compositionItems={this.props.compositionItems}/>
           </div>
         </ReflexElement>
 

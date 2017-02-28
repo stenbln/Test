@@ -175,7 +175,7 @@ componentDidMount(){
             <div className="row">
                 <div className="col-md-4">
                     <div className="device-container" style={{paddingTop:200}}>
-                        <div className="device-mockup macbook">
+                        <div className="device-mockup imac">
                             <div className="device">
                                 <div className="screen">
                                     <img src={images.screenshot} className="img-responsive" alt=""/> </div>
