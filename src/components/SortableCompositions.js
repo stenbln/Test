@@ -88,8 +88,7 @@ import Image from 'react-bootstrap/lib/Image';
 var CompositionItem = require ('../components/CompositionItem');
 
 
-const SortableItem = SortableElement(({value,dataitemID,items}) => {
-
+const SortableItem = SortableElement(({dragging,value,dataitemID,items}) => {
   var substringedArray = "a";
   if(typeof items[dataitemID]=="undefined"||items[dataitemID].length==0){
     substringedArray = "";
@@ -101,17 +100,21 @@ const SortableItem = SortableElement(({value,dataitemID,items}) => {
     return (
       <div  key={'item_'+dataitemID} >
 
-                <CompositionItem dataitemID={dataitemID} value={value} substringedArray={substringedArray}/>
+                <CompositionItem 
+                  dragging={dragging}
+                  dataitemID={dataitemID} 
+                  value={value} 
+                  substringedArray={substringedArray}/>
 
         </div>
     )}
 );
 
-const SortableList = SortableContainer(({items,compositionItems}) => {
+const SortableList = SortableContainer(({dragging,items,compositionItems}) => {
     return (
         <ul className="list">
             {compositionItems.map((value, index) =>
-                <SortableItem items={items} key={`item-${index}`} dataitemID={index} index={index} value={value} />
+                <SortableItem dragging={dragging} items={items} key={`item-${index}`} dataitemID={index} index={index} value={value} />
             )}
         </ul>
     );
@@ -129,12 +132,18 @@ class SortableCompositions extends Component {
     onSortEnd = ({oldIndex, newIndex}) => {
         let items =  arrayMove(this.props.compositionItems, oldIndex, newIndex)
         this.updateSortables(items);
+        //console.log("updated aa ", items)
     //need action here
+    };
+    onSortStart = ({})=>{
+        console.log("sorting started")
+        //this.setState({dragging: true});
+        CompositionActions.causeCompositionHandlerUpdate();
     };
     render() {
         return (
           <div id="sortableDivComposition">
-            <SortableList items={this.props.items} compositionItems={this.props.compositionItems} lockAxis="y" onSortEnd={this.onSortEnd} />
+            <SortableList dragging={this.props.dragging} items={this.props.items} compositionItems={this.props.compositionItems} lockAxis="y" onSortStart={this.onSortStart} onSortEnd={this.onSortEnd} />
           </div>
         )
     }

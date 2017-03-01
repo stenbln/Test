@@ -72,7 +72,7 @@ class SplitContainer extends Component{
           minSize="200">
           <div className="pane-content">
             <Title title="Scenes"></Title>
-            <SortableCompositions items={this.props.currentActiveState=="Manual"?this.props.items:this.props.itemsAutomatic} compositionItems={this.props.compositionItems}/>
+            <SortableCompositions dragging={this.props.dragging} items={this.props.currentActiveState=="Manual"?this.props.items:this.props.itemsAutomatic} compositionItems={this.props.compositionItems}/>
           </div>
         </ReflexElement>
 

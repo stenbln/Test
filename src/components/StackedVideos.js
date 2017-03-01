@@ -25,7 +25,8 @@ const styles = {
       width:'auto',
     },
     container:{
-      border:'2px solid #f3f3f3'
+      border:'2px solid #f3f3f3',
+      position:'relative'
     },
     innerDiv:{
       backgroundColor:'#f3f3f3'
@@ -194,23 +195,79 @@ const videos=
 
 var StackedVideos = React.createClass({
   handleMouseEvents:function(evt){
+    evt.persist()
     console.log("mouseovered ",evt.target, " ", evt.type)
     if(evt.type=="mouseenter"){
+    //code from http://stackoverflow.com/questions/21399872/how-to-detect-whether-html5-video-has-paused-for-buffering
+    var checkInterval  = 50.0
+    var lastPlayPos    = 0
+    var currentPlayPos = 0
+    var bufferingDetected = false
+    var player = evt.target;
+
+    setInterval(checkBuffering, checkInterval)
+    function checkBuffering() {
+        currentPlayPos = player.currentTime
+
+        // checking offset, e.g. 1 / 50ms = 0.02
+        var offset = 1 / checkInterval
+
+        // if no buffering is currently detected,
+        // and the position does not seem to increase
+        // and the player isn't manually paused...
+        if (
+                !bufferingDetected 
+                && currentPlayPos < (lastPlayPos + offset)
+                && !player.paused
+            ) {
+            console.log("buffering")
+            bufferingDetected = true
+
+            let id = evt.target.getAttribute("data-videoid");
+            console.log("buffer id ",evt.target, " ", id)
+            document.getElementById("spinner_id_"+id).style.visibility = "visible";
+        }
+
+        // if we were buffering but the player has advanced,
+        // then there is no buffering
+        if (
+            bufferingDetected 
+            && currentPlayPos > (lastPlayPos + offset)
+            && !player.paused
+            ) {
+            console.log("not buffering anymore")
+            bufferingDetected = false
+
+            let id = evt.target.getAttribute("data-videoid")
+            document.getElementById("spinner_id_"+id).style.visibility = "hidden";
+        }
+        lastPlayPos = currentPlayPos
+    }
+
+
       //console.log(evt.target.getAttribute("data-videoId"));
-      if(evt.target.paused){//neccessary to avoid errors
-        evt.target.play();
-      }
+    if(evt.target.paused){//neccessary to avoid errors
+      evt.target.play();
+    }
     }else if(evt.type=="mouseleave"){
       evt.target.pause();
+      bufferingDetected = false
+      let id = evt.target.getAttribute("data-videoid")
+      document.getElementById("spinner_id_"+id).style.visibility = "hidden";
     }
     
   },
   render: function() {
     var captionList = videos.urls.map((cap,i)=>{
-          if(cap.preview!=null){
+          if(cap.preview!=null){//if small resolution preview exist
             return (
-              <div style={styles.container} key={'video_preview_id'+i} >
-                <video controls 
+              <div style={styles.container} key={'video_preview_id'+i}>
+                <video
+                  data-type="video"
+                  data-src={cap.preview.url}  
+                  loop
+                  data-videoid={i}
+                  preload="metadata"
                   poster={cap.image}
                   style={styles.video}
                   onMouseEnter={this.handleMouseEvents}
@@ -219,11 +276,17 @@ var StackedVideos = React.createClass({
                   <source src={cap.preview.url}>
                   </source>
                 </video>
+                <Spinner id={"spinner_id_"+i} style={{visibility:'hidden',position:'absolute',top:8,left:8}}spinnerName='circle' />
               </div>)
-          }else if(cap.preview==null){
+          }else if(cap.preview==null){//if preview doesnt exist show full resolution version (loading will be slower though)
             return (
-              <div style={styles.container} key={'video_preview_id'+i} >
-                <video controls
+              <div style={styles.container} key={'video_preview_id'+i}>
+                <video 
+                  data-type="video"
+                  data-src={cap.original.url}  
+                  loop
+                  data-videoid={i}
+                  preload="metadata"
                   poster={cap.image}
                   style={styles.video}
                   onMouseEnter={this.handleMouseEvents}
@@ -232,6 +295,7 @@ var StackedVideos = React.createClass({
                   <source src={cap.original.url}>
                   </source>
                 </video>
+                <Spinner id={"spinner_id_"+i} style={{visibility:'hidden',position:'absolute',top:8,left:8}}spinnerName='circle' />
               </div>)
           }
     });

@@ -57,7 +57,7 @@ const images = [
   { src: "http://wfiles.brothersoft.com/b/beautiful-iphone-4-wallpaper-01_5846-640x960.jpg", label: "Sample image 21" },
   { src: "http://wfiles.brothersoft.com/i/iphone-4-underwater-wallpaper-01_6049-640x960.jpg", label: "Sample image 22" }
 ];
-
+//// PROBABLY this component NOT USED at alll!!!!!!!!!!!!!!!!!!!
 var Compositions = React.createClass({
   render: function() {
     var captionList = this.props.compositionItems.map(function(item,i){

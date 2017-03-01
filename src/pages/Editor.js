@@ -16,7 +16,8 @@ class Editor extends Component {
     this.state = {
       items : SortableStore.getAll().items,
       itemsAutomatic:SortableStoreAutomatic.getAll(),
-      compositionItems:CompositionStore.getAll(),
+      compositionItems:CompositionStore.getAll().compositionItems,
+      dragging:CompositionStore.getAll().dragging,
       sentences:SentencesStore.getAll().sentences,
       loader:SentencesStore.getAll().loader,
       currentActiveState:SortableStore.getAll().currentActiveState,
@@ -46,7 +47,8 @@ class Editor extends Component {
     this.setState({
       items:SortableStore.getAll().items,
       itemsAutomatic:SortableStoreAutomatic.getAll(),
-      compositionItems:CompositionStore.getAll(),
+      compositionItems:CompositionStore.getAll().compositionItems,
+      dragging:CompositionStore.getAll().dragging,
       sentences:SentencesStore.getAll().sentences,
       loader:SentencesStore.getAll().loader,
       currentActiveState:SortableStore.getAll().currentActiveState,
@@ -60,7 +62,7 @@ class Editor extends Component {
     return (
       <div>
           {/*<SortableComponent items={this.state.items} /><br/><br/><br/>*/}
-          <SplitContainer page={this.state.page} chipData={this.state.chipData} images={this.state.images} imagesLoader={this.state.imagesLoader} currentActiveState={this.state.currentActiveState} loader={this.state.loader} sentences={this.state.sentences} items={this.state.items} itemsAutomatic={this.state.itemsAutomatic} compositionItems={this.state.compositionItems}/>
+          <SplitContainer page={this.state.page} chipData={this.state.chipData} images={this.state.images} imagesLoader={this.state.imagesLoader} currentActiveState={this.state.currentActiveState} loader={this.state.loader} sentences={this.state.sentences} items={this.state.items} itemsAutomatic={this.state.itemsAutomatic} dragging={this.state.dragging} compositionItems={this.state.compositionItems}/>
           <Timeline currentActiveState={this.state.currentActiveState} items={this.state.items} itemsAutomatic={this.state.itemsAutomatic} compositionItems={this.state.compositionItems}/>
       </div>
     );

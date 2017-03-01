@@ -16,6 +16,19 @@
     background-size: cover;
 }
 
+.compositionVideoItem{
+    position:relative;
+    width: 200px;
+    height: 100px;
+    overflow:hidden;
+
+}
+.videoComposition{
+    max-width:201px;/*201px instead of 200px because of some strange bug ¯\_(ツ)_/¯  */
+    height:auto;
+    width:auto;
+}
+
 .compositionInfoDiv{
     background:#f5f5f5;
     text-align:left;
