@@ -258,7 +258,7 @@ var StackedVideos = React.createClass({
     
   },
   render: function() {
-    var captionList = videos.urls.map((cap,i)=>{
+    var captionList = this.props.videos.map((cap,i)=>{
           if(cap.preview!=null){//if small resolution preview exist
             return (
               <div style={styles.container} key={'video_preview_id'+i}>
@@ -302,9 +302,9 @@ var StackedVideos = React.createClass({
     
     return (
       <div style={{width:'100%'}}>
-      <Spinner className={this.props.imagesLoader?'':'displayNone'} style={{paddingTop:'15% '}} spinnerName='three-bounce' />
+      <Spinner className={this.props.videosLoader?'':'displayNone'} style={{paddingTop:'15% '}} spinnerName='three-bounce' />
       <StackGrid
-        className={this.props.imagesLoader?'displayNone':''}
+        className={this.props.videosLoader?'displayNone':''}
         monitorImagesLoaded
         columnWidth={200}
         duration={600}

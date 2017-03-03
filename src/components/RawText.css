@@ -1,3 +1,11 @@
 .displayNone{
     display:none;
 }
+
+.greenBackgroundColor{
+    background-color:darkseagreen !important;
+}
+
+.whiteBackgroundColor{
+    background-color:white !important;
+}

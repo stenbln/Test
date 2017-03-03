@@ -12,7 +12,7 @@ var ImageSearchBar = React.createClass({
       if (evt.key === 'Enter' && evt.target.value!==''){
         ImagesActions.addChip(evt.target.value);
         evt.target.value='';
-        ImagesActions.loadImages(this.props.chipData.map((chip)=>chip.label))//send array of chips e.g. ["Cloudsss", "Water", "Ocean", "ReactJS"]
+        ImagesActions.loadImages(this.props.chipData.map((chip)=>chip.label),1)//send array of chips e.g. ["Cloudsss", "Water", "Ocean", "ReactJS"]
       }
       //console.log("event keyPress  ",evt.key)
       //console.log("event Keypress target  ",evt.target.value)
@@ -22,8 +22,10 @@ var ImageSearchBar = React.createClass({
             <div>
                 <MuiThemeProvider>
                     <TextField
-                      underlineDisabledStyle={{color:'red'}}
-                      underlineStyle={{backgroundColor:'yellow'}}
+                      style={{marginLeft:20}}
+                      underlineDisabledStyle={{width:200}}
+                      underlineStyle={{width:200}}
+                      underlineFocusStyle={{borderColor:'indianred'}}
                       hintText="keywords"
                       floatingLabelText="Search for additional images"
                       onChange={this.handleChange}

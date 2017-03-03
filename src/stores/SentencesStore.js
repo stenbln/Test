@@ -44,6 +44,7 @@ class SentencesStore extends EventEmitter{
             case "FETCH_SENTECES_ERROR"://implement error
                 this.showError();
                 break;
+
         }
     }
 }

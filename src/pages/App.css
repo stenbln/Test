@@ -4,7 +4,9 @@ html, body {
 label{
   cursor:pointer;
 }
-
+hr{
+  max-width: none !important;
+}
 .btn{
   text-transform: none !important;
   letter-spacing: 0px !important;

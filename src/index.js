@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './pages/App';
+
 import './index.css';
 import {Router, Route, IndexRoute, hashHistory} from 'react-router';
 
@@ -13,6 +13,8 @@ import Home from './pages/Home';
 
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/css/bootstrap-theme.css';
+
+import App from './pages/App';// this needs to be iported after bootstrap css because of ImageSearchBar and VideoSearchBar components!
 
 import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();

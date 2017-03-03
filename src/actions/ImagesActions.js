@@ -3,21 +3,26 @@ import axios from 'axios';
 
 
 export function loadImages(array,page){
-    var encodedArray = JSON.stringify(array);
-    var url = 'http://127.0.0.1:8000/api/image_search?keywords=' + encodeURIComponent(encodedArray)+'&page='+page;
-    //console.log("load these array -------------", array)
-    dispatcher.dispatch({type:'FETCH_IMAGES'});
-    axios.get(url)
-    .then(function (data) {
-      //console.log("this is data for images ",data);
-      dispatcher.dispatch({type:'RECEIVE_IMAGES',images:data.data.urls,chipItems:array});
+  //console.log("arary : ", array.length, "   ", typeof array)
+    if(array.length>0){//because when last chip item is deleted we want to clear all the images shown
+      var encodedArray = JSON.stringify(array);
+      var url = 'http://127.0.0.1:8000/api/image_search?keywords=' + encodeURIComponent(encodedArray)+'&page='+page;
+      //console.log("load these array -------------", array)
+      dispatcher.dispatch({type:'FETCH_IMAGES'});
+      axios.get(url)
+      .then(function (data) {
+        //console.log("this is data for images ",data);
+        dispatcher.dispatch({type:'RECEIVE_IMAGES',images:data.data.urls,chipItems:array});
 
-    })
-    .catch(function (error) {
-      console.log(error);
-      dispatcher.dispatch({type:'FETCH_IMAGES_ERROR'});
-      //dispatcher.dispatch({type:'FETCH_TODOS_ERROR'})
-    });
+      })
+      .catch(function (error) {
+        console.log(error);
+        dispatcher.dispatch({type:'FETCH_IMAGES_ERROR'});
+        //dispatcher.dispatch({type:'FETCH_TODOS_ERROR'})
+      });
+    }else if(array.length==0){
+        dispatcher.dispatch({type:'RECEIVE_IMAGES',images:[],chipItems:array});//we send empty array
+    }
 }
 
 export function addChip(chip){

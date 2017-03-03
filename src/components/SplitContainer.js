@@ -59,7 +59,20 @@ class SplitContainer extends Component{
           <div id="imageResults" style={{height:'100%',overflow:'scroll'}}  className="pane-content">
             <Title title="Media"></Title>
             <label>
-              <BasePhotosComponent page={this.props.page} chipData={this.props.chipData} images={this.props.images} imagesLoader={this.props.imagesLoader}/>
+              <BasePhotosComponent 
+                page={this.props.page} 
+                chipData={this.props.chipData} 
+                images={this.props.images} 
+                imagesLoader={this.props.imagesLoader}
+                
+                videos={this.props.videos}
+                videosLoader={this.props.videosLoader}
+                videosChipData={this.props.videosChipData}
+                videosPage={this.props.videosPage}
+
+                sounds={this.props.sounds}
+                selectedSoundId={this.props.selectedSoundId}
+                />
             </label>
           </div>
         </ReflexElement>

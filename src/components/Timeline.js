@@ -12,7 +12,7 @@ const TimelineBars = ({items,compositionItems})=> {
     const determineColor = (index,compositionItems) =>{
         var overflow = compositionItems.length>totalDesiredLength;
         document.overflow = overflow;
-        console.log(index, compositionItems.length)
+        //console.log(index, compositionItems.length)
         if(!overflow){//if there is left than 12 compositions
             if(compositionItems.length<totalDesiredLength && index>=compositionItems.length){
                 console.log("not called 1")
@@ -26,7 +26,7 @@ const TimelineBars = ({items,compositionItems})=> {
                 }
             }
             else if(!overflow && index<compositionItems.length){
-                console.log("not called at alll 2");
+                //console.log("not called at alll 2");
                 if(index==0){
                     return (<div key={index} className="first greenColored piece"></div>)
                 }else if(index==totalDesiredLength-1){
@@ -55,7 +55,7 @@ const TimelineBars = ({items,compositionItems})=> {
 
     if (compositionItems.length < totalDesiredLength){
         var newArray = _.range(totalDesiredLength);
-        console.log(newArray,compositionItems)
+        //console.log(newArray,compositionItems)
     }else{
         var newArray = _.range(compositionItems.length)
     }

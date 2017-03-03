@@ -32,7 +32,7 @@ var Chips = React.createClass({
         this.chipData.splice(chipToDelete, 1);
         this.chipData.map((chip,index) => chip.key=index).indexOf(key);
         this.setState({chipData: this.chipData});
-        //console.log("new spliced CHIP DATA   ", this.chipData)
+        console.log("new spliced CHIP DATA   ", this.chipData)
         ImagesActions.updateChips(this.chipData);
         ImagesActions.loadImages(this.chipData.map((chip)=>chip.label),1); //send array of updated chips e.g. ["Cloudsss", "Water", "Ocean", "ReactJS"] and page number of 1
     },

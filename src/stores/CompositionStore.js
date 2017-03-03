@@ -33,6 +33,7 @@ class CompositionStore extends EventEmitter{
         this.dragging=true;
         this.emit("change");
     }
+
     handleActions(action){
         switch(action.type){
             case "ADD_NEW_COMP":
@@ -44,7 +45,7 @@ class CompositionStore extends EventEmitter{
             case "START_SORTING_COMPOSITIONS":
                 this.setDragginStateToTrue();
                 break;
-                
+
         }
     }
 }
