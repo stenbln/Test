@@ -115,7 +115,11 @@ class Editor extends Component {
             selectedSoundId={this.state.selectedSoundId}
             selectedSoundUrl={this.state.selectedSoundUrl}
             currentPlayingSound={this.state.currentPlayingSound}/>
-          <Timeline currentActiveState={this.state.currentActiveState} items={this.state.items} itemsAutomatic={this.state.itemsAutomatic} compositionItems={this.state.compositionItems}/>
+          <Timeline 
+            currentActiveState={this.state.currentActiveState} 
+            items={this.state.currentActiveState=="Manual"?this.state.items:this.state.itemsAutomatic}
+            compositionItems={this.state.compositionItems}
+            selectedSoundUrl={this.state.selectedSoundUrl}/>
       </div>
     );
   }

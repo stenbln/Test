@@ -2,6 +2,8 @@ var React = require('react');
 var LoadingBar = require('./LoadingBar');
 var VideoPreviewImage = require('./VideoPreviewImage');
 var TextPreview = require('./TextPreview');
+import RaisedButton from 'material-ui/RaisedButton';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 
 import {Modal,Button} from 'react-bootstrap';
@@ -55,12 +57,10 @@ const PreviewModal = React.createClass({
     return (
       <div>
 
-        <Button
-          bsStyle="primary"
-          bsSize="large"
-          onClick={this.open}>
-          Preview
-        </Button>
+
+        <MuiThemeProvider>
+          <RaisedButton onClick={this.open}label="Preview" primary={true} />
+        </MuiThemeProvider>
 
         <Modal show={this.state.showModal} onHide={this.close}>
           <Modal.Header closeButton>

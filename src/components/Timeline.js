@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom'
 var _ = require('lodash');
 import './Timeline.css'; 
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import RaisedButton from 'material-ui/RaisedButton';
-import Button from 'react-bootstrap/lib/Button';
+import RenderButton from './RenderButton';
+
 var PreviewModal = require('./PreviewModal');
 
 
-const TimelineBars = ({items,compositionItems})=> {
+const TimelineBars = ({items,compositionItems,selectedSoundUrl})=> {
     const totalDesiredLength = 12;
     const determineColor = (index,compositionItems) =>{
         var overflow = compositionItems.length>totalDesiredLength;
@@ -61,17 +63,15 @@ const TimelineBars = ({items,compositionItems})=> {
     }
 
     return (
-        <div className="main">
+        <div className="main" style={{paddingBottom:20}}>
         <PreviewModal items={items} compositionItems={compositionItems}/>
         {
             newArray.map((value,index)=>{
                 return determineColor(index,compositionItems)
             })
 
-        }
-            <MuiThemeProvider>
-                <RaisedButton label="Render" secondary={true} className="renderButton"/>
-            </MuiThemeProvider>
+        }    
+            <RenderButton items={items} compositionItems={compositionItems} selectedSoundUrl={selectedSoundUrl}/> 
         </div>
     )
 };
@@ -83,7 +83,10 @@ export default class Timeline extends Component{
     render(){
         return(
             <div>
-              <TimelineBars items={this.props.currentActiveState=="Manual"?this.props.items:this.props.itemsAutomatic} compositionItems={this.props.compositionItems}/>
+              <TimelineBars 
+               items={this.props.items} 
+               compositionItems={this.props.compositionItems}
+               selectedSoundUrl={this.props.selectedSoundUrl}/>
             </div>
         )
     }
