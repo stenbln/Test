@@ -108,13 +108,12 @@ var StackedMusic = React.createClass({
                   data-type="sound"        
                   src={soundIcon} thumbnail responsive>
                 </Image>
-                <div><i data-playingindicator="true" className="fa fa-play" style={{cursor:'pointer'}} aria-hidden="false"><audio src={sound.url}></audio></i> {sound.genre}</div>
+                <div><i data-playingindicator="true" className={this.props.currentPlayingSound==i?"fa fa-pause":"fa fa-play"} style={{cursor:'pointer'}} aria-hidden="false"><audio id={"sound_id_"+i} data-soundid={i} src={sound.url}></audio></i> {sound.genre}</div>
               </div>)
     });
     
     return (
       <div style={{width:'100%',cursor:'default'}}>
-      <audio  controls></audio>
       <Spinner className={this.props.imagesLoader?'':'displayNone'} style={{paddingTop:'15% '}} spinnerName='three-bounce' />
       <StackGrid
         className={this.props.imagesLoader?'displayNone':''}

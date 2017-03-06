@@ -12,13 +12,17 @@ export function loadSentences(url){
 
             // this is for fetching images when link to url is passed 
             var keywords = data.data.keywords;
-            var encodedArray = JSON.stringify(keywords);
+            var params = new URLSearchParams();
+            params.append('keywords', keywords);
+            params.append('page', 1);//always load first page of the results when passing url article link
             //console.log("keywords from result are ",keywords)
 
-            var url = 'http://127.0.0.1:8000/api/image_search?keywords=' + encodeURIComponent(encodedArray)+'&page='+ 1;
+            var url = 'http://127.0.0.1:8000/api/image_search';
             //console.log("load these array -------------", array)
             dispatcher.dispatch({type:'FETCH_IMAGES'});
-            axios.get(url)
+            axios.get(url,{
+              params:params
+            })
             .then(function (data) {
               console.log("this is data for images ",data);
               dispatcher.dispatch({type:'RECEIVE_IMAGES',images:data.data.urls,chipItems:keywords});
@@ -31,10 +35,12 @@ export function loadSentences(url){
             });
 
                     // this is for fetching images when link to url is passed 
-                    var url = 'http://127.0.0.1:8000/api/video_search?keywords=' + encodeURIComponent(encodedArray)+'&page='+ 1;
+                    var url = 'http://127.0.0.1:8000/api/video_search';
                     //console.log("load these array -------------", array)
                     dispatcher.dispatch({type:'FETCH_VIDEOS'});
-                    axios.get(url)
+                    axios.get(url,{
+                      params:params
+                    })
                     .then(function (data) {
                       console.log("this is data for videos ",data);
                       dispatcher.dispatch({type:'RECEIVE_VIDEOS',videos:data.data.urls,chipItems:keywords});

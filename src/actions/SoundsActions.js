@@ -11,3 +11,10 @@ export function updateSelectedSound(id,url){
     })
 }
 
+export function updatePlayingSound(id,dataSoundId){
+    dispatcher.dispatch({
+        type:'PLAY_SOUND',
+        id,
+        dataSoundId,
+    })
+}

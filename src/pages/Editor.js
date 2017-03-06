@@ -36,6 +36,7 @@ class Editor extends Component {
       sounds:SoundsStore.getAll().sounds,
       selectedSoundId:SoundsStore.getAll().selectedSoundId,
       selectedSoundUrl:SoundsStore.getAll().selectedSoundUrl,
+      currentPlayingSound:SoundsStore.getAll().currentPlayingSound,
 
     }
     console.log("call to sentence store ",SentencesStore.getAll().sentences)
@@ -84,6 +85,7 @@ class Editor extends Component {
       sounds:SoundsStore.getAll().sounds,
       selectedSoundId:SoundsStore.getAll().selectedSoundId,
       selectedSoundUrl:SoundsStore.getAll().selectedSoundUrl,
+      currentPlayingSound:SoundsStore.getAll().currentPlayingSound,
 
     });
   }
@@ -111,7 +113,8 @@ class Editor extends Component {
 
             sounds={this.state.sounds}
             selectedSoundId={this.state.selectedSoundId}
-            selectedSoundUrl={this.state.selectedSoundUrl}/>
+            selectedSoundUrl={this.state.selectedSoundUrl}
+            currentPlayingSound={this.state.currentPlayingSound}/>
           <Timeline currentActiveState={this.state.currentActiveState} items={this.state.items} itemsAutomatic={this.state.itemsAutomatic} compositionItems={this.state.compositionItems}/>
       </div>
     );

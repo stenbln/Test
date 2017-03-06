@@ -33,7 +33,7 @@ var VideoChips = React.createClass({
         this.chipData.map((chip,index) => chip.key=index).indexOf(key);
         this.setState({chipData: this.chipData});
         console.log("new spliced CHIP DATAA   ", this.chipData)
-        VideosActions.updateChips(this.chipData);
+        //VideosActions.updateChips(this.chipData);
         VideosActions.loadVideos(this.chipData.map((chip)=>chip.label),1); //send array of updated chips e.g. ["Cloudsss", "Water", "Ocean", "ReactJS"] and page number of 1
     },
     renderChip:function(data,i){

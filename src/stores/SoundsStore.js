@@ -7,8 +7,9 @@ class SoundsStore extends EventEmitter{
         super();
         this.sounds=sounds.tracks;
         this.loader=false;
-        this.selectedSoundId=-1;
-        this.selectedSoundUrl=''
+        this.selectedSoundId = -1;//-1 equals no current playing sounds
+        this.selectedSoundUrl='';
+        this.currentPlayingSound = -1;
     }
     getAll(){
         return {
@@ -16,6 +17,7 @@ class SoundsStore extends EventEmitter{
             loader:this.loader,
             selectedSoundId:this.selectedSoundId,
             selectedSoundUrl:this.selectedSoundUrl,
+            currentPlayingSound:this.currentPlayingSound,
         };
     }
     updateSoundsList(sounds){
@@ -42,6 +44,26 @@ class SoundsStore extends EventEmitter{
         this.selectedSoundUrl = url;
         this.emit("change");
     }
+    updateCurrentPlayingSound(id,dataSoundId){ //e.g. "1" and "data_sound_1"
+        console.log("el received in store ", this.currentPlayingSound ,  " ",document.getElementById(id))
+        if(dataSoundId==this.currentPlayingSound){//if the same element is clicked again, pause it 
+            document.getElementById("sound_id_"+this.currentPlayingSound).pause()
+            this.currentPlayingSound = -1;
+            console.log("called sound first ")
+        }else if(this.currentPlayingSound!=-1){// when the page loads for the fi there
+            document.getElementById("sound_id_"+this.currentPlayingSound).pause()
+            this.currentPlayingSound = dataSoundId;
+            document.getElementById(id).play()
+            console.log("called sound second ")
+        } else{
+            this.currentPlayingSound = dataSoundId;
+            document.getElementById(id).play()
+            console.log("called sound third ")
+        }
+        
+        //document.getElementById(id).play()
+        this.emit("change");
+    }
     handleActions(action){
         switch(action.type){
             case "RECEIVE_SOUNDS":
@@ -56,6 +78,9 @@ class SoundsStore extends EventEmitter{
                 break;
             case "UPDATE_SELECTED_SOUND":
                 this.updatedSelectedSound(action.id,action.url);
+                break;
+            case "PLAY_SOUND":
+                this.updateCurrentPlayingSound(action.id,action.dataSoundId);
                 break;
                 
         }

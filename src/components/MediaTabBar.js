@@ -67,17 +67,15 @@ var MediaTabBar = React.createClass({
         </Tab>
         <Tab style={styles.text} label="Music" value="c">
           <div>
-            <h2 style={styles.headline}>Tracks for your video</h2>
-            <StackedMusic sounds={this.props.sounds} selectedSoundId={this.props.selectedSoundId}/>
+            <h2 style={styles.headline}>Select a track for your video</h2><br></br>
+            <StackedMusic sounds={this.props.sounds} selectedSoundId={this.props.selectedSoundId} currentPlayingSound={this.props.currentPlayingSound}/>
           </div>
         </Tab>
         <Tab style={styles.text} label="Upload" value="d">
           <div>
-            <h2 style={styles.headline}>Upload</h2>
+            <h2 style={styles.headline}>Upload your own files</h2>
             <p>
-              This is another example of a controllable tab. Remember, if you
-              use controllable Tabs, you need to give all of your tabs values or else
-              you wont be able to select them.
+              (This feature is currently being developed)
             </p>
           </div>
         </Tab>

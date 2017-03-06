@@ -3,13 +3,17 @@ import axios from 'axios';
 
 
 export function loadImages(array,page){
+  var params = new URLSearchParams();
+  params.append('keywords', array);
+  params.append('page', page);
   //console.log("arary : ", array.length, "   ", typeof array)
     if(array.length>0){//because when last chip item is deleted we want to clear all the images shown
-      var encodedArray = JSON.stringify(array);
-      var url = 'http://127.0.0.1:8000/api/image_search?keywords=' + encodeURIComponent(encodedArray)+'&page='+page;
+      var url = 'http://127.0.0.1:8000/api/image_search'
       //console.log("load these array -------------", array)
       dispatcher.dispatch({type:'FETCH_IMAGES'});
-      axios.get(url)
+      axios.get(url,{
+        params:params
+      })
       .then(function (data) {
         //console.log("this is data for images ",data);
         dispatcher.dispatch({type:'RECEIVE_IMAGES',images:data.data.urls,chipItems:array});
@@ -34,11 +38,16 @@ export function updateChips(chipData){
 }
 
 export function loadMoreImages(array,page){
-    var encodedArray = JSON.stringify(array);
-    var url = 'http://127.0.0.1:8000/api/image_search?keywords=' + encodeURIComponent(encodedArray)+'&page='+page;
+  var params = new URLSearchParams();
+  params.append('keywords', array);
+  params.append('page', page);
+    
+    var url = 'http://127.0.0.1:8000/api/image_search';
     //console.log("load these array -------------", array)
     //dispatcher.dispatch({type:'FETCH_IMAGES'});
-    axios.get(url)
+    axios.get(url,{
+      params:params
+    })
     .then(function (data) {
       //console.log("this is data for images ",data);
         dispatcher.dispatch({type:'RECEIVE_MORE_IMAGES',images:data.data.urls,page:page});

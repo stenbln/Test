@@ -58,7 +58,7 @@ class SplitContainer extends Component{
           maxSize="15000">
           <div id="imageResults" style={{height:'100%',overflow:'scroll'}}  className="pane-content">
             <Title title="Media"></Title>
-            <label>
+            
               <BasePhotosComponent 
                 page={this.props.page} 
                 chipData={this.props.chipData} 
@@ -72,8 +72,8 @@ class SplitContainer extends Component{
 
                 sounds={this.props.sounds}
                 selectedSoundId={this.props.selectedSoundId}
+                currentPlayingSound={this.props.currentPlayingSound}
                 />
-            </label>
           </div>
         </ReflexElement>
 

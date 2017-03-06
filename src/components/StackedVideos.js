@@ -194,6 +194,7 @@ const videos=
 }
 
 var StackedVideos = React.createClass({
+
   handleMouseEvents:function(evt){
     evt.persist()
     console.log("mouseovered ",evt.target, " ", evt.type)
@@ -259,10 +260,16 @@ var StackedVideos = React.createClass({
   },
   render: function() {
     var captionList = this.props.videos.map((cap,i)=>{
+      if(this.props.videosLoader==true){
+        console.log("this is true")
+        return (<div key={'video_empty_preview_id'+i} style={styles.container}>
+                </div>)// in order to force re-calling of the event mouseenter and mouse leave handlers
+      }else{
           if(cap.preview!=null){//if small resolution preview exist
             return (
               <div style={styles.container} key={'video_preview_id'+i}>
                 <video
+                  muted
                   data-type="video"
                   data-src={cap.preview.url}  
                   loop
@@ -282,6 +289,7 @@ var StackedVideos = React.createClass({
             return (
               <div style={styles.container} key={'video_preview_id'+i}>
                 <video 
+                  muted
                   data-type="video"
                   data-src={cap.original.url}  
                   loop
@@ -298,6 +306,7 @@ var StackedVideos = React.createClass({
                 <Spinner id={"spinner_id_"+i} style={{visibility:'hidden',position:'absolute',top:8,left:8}}spinnerName='circle' />
               </div>)
           }
+        }
     });
     
     return (

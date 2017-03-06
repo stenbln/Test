@@ -3,12 +3,18 @@ import axios from 'axios';
 
 
 export function loadVideos(array,page){
+  var params = new URLSearchParams();
+  params.append('keywords', array);
+  params.append('page', page);
+
   if(array.length>0){//because when last VIDEO chip item is deleted we want to clear all the videos shown
-    var encodedArray = JSON.stringify(array);
-    var url = 'http://127.0.0.1:8000/api/video_search?keywords=' + encodeURIComponent(encodedArray)+'&page='+page;
+    
+    var url = 'http://127.0.0.1:8000/api/video_search'
     //console.log("load these array -------------", array)
     dispatcher.dispatch({type:'FETCH_VIDEOS'});
-    axios.get(url)
+    axios.get(url,{
+      params:params
+    })
     .then(function (data) {
       //console.log("this is data for videos ",data);
       dispatcher.dispatch({type:'RECEIVE_VIDEOS',videos:data.data.urls,chipItems:array});
@@ -33,11 +39,16 @@ export function updateChips(chipData){
 }
 
 export function loadMoreVideos(array,page){
-    var encodedArray = JSON.stringify(array);
-    var url = 'http://127.0.0.1:8000/api/video_search?keywords=' + encodeURIComponent(encodedArray)+'&page='+page;
+  var params = new URLSearchParams();
+  params.append('keywords', array);
+  params.append('page', page);
+
+    var url = 'http://127.0.0.1:8000/api/video_search'
     //console.log("load these array -------------", array)
     //dispatcher.dispatch({type:'FETCH_VIDEOS'}); //this can be used later for videosLoader indicator
-    axios.get(url)
+    axios.get(url,{
+      params:params
+    })
     .then(function (data) {
       console.log("this is data for vidoes received ",data);
         dispatcher.dispatch({type:'RECEIVE_MORE_VIDEOS',videos:data.data.urls,page:page});

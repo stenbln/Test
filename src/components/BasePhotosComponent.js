@@ -46,7 +46,11 @@ var BasePhotosComponent = React.createClass({
       }
       //console.log("sound selected with url ",src)
     }else if(evt.target.getAttribute("data-playingindicator")!=null){//if play icon or sound name was clicked
-        console.log("this el was clicked ", evt.target.children)
+        console.log("this sound props was received ", this.props.currentPlayingSound)
+        //evt.target.children[0].play()
+        var id = evt.target.children[0].getAttribute("id"); // e.g. "sound_id_1"
+        var dataSoundId = evt.target.children[0].getAttribute("data-soundid"); //e.g. "2"
+        SoundsActions.updatePlayingSound(id,dataSoundId);
     }
   },
 
@@ -69,6 +73,7 @@ var BasePhotosComponent = React.createClass({
 
         sounds={this.props.sounds}
         selectedSoundId={this.props.selectedSoundId}
+        currentPlayingSound={this.props.currentPlayingSound}
         />
       </div>
     );

@@ -98,7 +98,8 @@ const CompositionItem = React.createClass({
                 <div className="compositionItem">
                   <div className="compositionVideoItem">
                     <video
-                     src={this.props.value.src}
+                      muted
+                      src={this.props.value.src}
                       id={"videoBroj"+this.props.dataitemID}
                       data-videosrc={this.props.value.src}
                       data-compositionNr={this.props.dataitemID}
