@@ -27,12 +27,14 @@ var BasePhotosComponent = React.createClass({
   handleClick:function (evt) {
     evt.preventDefault()
     var src = evt.target.getAttribute("data-src");
+    var renderSrc = evt.target.getAttribute("data-srcoriginal");
+    //console.log("this is the srcoriginal ", src)
     var dataType = evt.target.getAttribute("data-type"); //it can be either "img" or "video"
     var poster = evt.target.getAttribute("poster");
     //console.log("This was, clicked ",evt.target.getAttribute("data-playingindicator"))
     if(src!=null||dataType!=null&&dataType!="sound"){// we dont want to fire this on every element click, we only want to fire either for images  or videos. Not tabs!
       //console.log("This photo was clicked ",evt.target.getAttribute("src"))
-      CompositionActions.pushNewComposition(src,dataType,poster)
+      CompositionActions.pushNewComposition(src,renderSrc,dataType,poster)
     }else if(src!=null||dataType!=null&&dataType=="sound"){
       var src = evt.target.getAttribute("data-url");
       var id = evt.target.getAttribute('data-soundNr');

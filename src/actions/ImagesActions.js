@@ -15,7 +15,7 @@ export function loadImages(array,page){
         params:params
       })
       .then(function (data) {
-        //console.log("this is data for images ",data);
+        console.log("this is data for images ",data);
         dispatcher.dispatch({type:'RECEIVE_IMAGES',images:data.data.urls,chipItems:array});
 
       })

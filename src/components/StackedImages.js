@@ -66,6 +66,7 @@ var StackedImages = React.createClass({
                   style={styles.img}
                   data-type="img"
                   data-src={cap.preview}
+                  data-srcoriginal={cap.original}
                   src={cap.preview} thumbnail responsive>
                 </Image>
               </div>)

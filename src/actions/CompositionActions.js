@@ -1,9 +1,10 @@
 import dispatcher from '../dispatcher';
 
-export function pushNewComposition(src,dataType,poster){
+export function pushNewComposition(src,renderSrc,dataType,poster){
     dispatcher.dispatch({
         type:"ADD_NEW_COMP",
         src,
+        renderSrc,
         dataType,
         poster
     });

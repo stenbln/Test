@@ -16,8 +16,8 @@ class CompositionStore extends EventEmitter{
         this.dragging = false;
         this.emit("change");
     }
-    addNewComp(src,dataType,poster){
-        var compItem = {src:src, dataType:dataType, poster:poster}
+    addNewComp(src,renderSrc,dataType,poster){
+        var compItem = {src:src,renderSrc:renderSrc, dataType:dataType, poster:poster}
         this.compositionItems = this.compositionItems.concat(compItem);
         this.emit("change");
         console.log(this.compositionItems)
@@ -37,7 +37,7 @@ class CompositionStore extends EventEmitter{
     handleActions(action){
         switch(action.type){
             case "ADD_NEW_COMP":
-                this.addNewComp(action.src,action.dataType,action.poster);
+                this.addNewComp(action.src,action.renderSrc,action.dataType,action.poster);
                 break;
             case "UPDATE_SORTABLE_COMPOSITIONS":
                 this.updateSortableList(action.items);

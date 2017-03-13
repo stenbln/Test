@@ -271,7 +271,8 @@ var StackedVideos = React.createClass({
                 <video
                   muted
                   data-type="video"
-                  data-src={cap.preview.url}  
+                  data-src={cap.preview.url}
+                  data-srcoriginal={cap.original.url}  
                   loop
                   data-videoid={i}
                   preload="metadata"
@@ -291,7 +292,8 @@ var StackedVideos = React.createClass({
                 <video 
                   muted
                   data-type="video"
-                  data-src={cap.original.url}  
+                  data-src={cap.original.url}
+                  data-srcoriginal={cap.original.url}    
                   loop
                   data-videoid={i}
                   preload="metadata"
