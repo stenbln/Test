@@ -27,8 +27,7 @@
     "react-spinkit": "^2.1.1",
     "react-stack-grid": "^0.1.1",
     "react-tap-event-plugin": "^2.0.1",
-    "react-tooltip-component": "^0.3.0",
-    "sentence-splitter": "^2.2.0"
+    "react-tooltip-component": "^0.3.0"
   },
   "scripts": {
     "start": "react-scripts start",

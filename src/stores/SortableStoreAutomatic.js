@@ -74,6 +74,11 @@ class SortableStoreAutomatic extends EventEmitter{
         //console.log("Carret position is here  ", caretPos)
         //console.log("This is delete fucntion call", this.sortableItems[index])
 
+        if(index==0&&caretPos==0&&fieldValueAfterPressingDelete==""){//this fixes the bug when the content in the first field is selected and deleted and when the delete is clicked on the start of the second item. With this code the value in the first field is deleted.
+            this.sortableItems[index]="";
+            //console.log("STA VRACA ,,,,,,,,,,, ------  ")
+        }
+
 
         if(caretPos==0 && index!=0){
             //console.log("BREEEEEEEEEEEEEEE ",fieldValueAfterPressingDelete)

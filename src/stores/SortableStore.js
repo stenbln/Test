@@ -74,10 +74,13 @@ class SortableStore extends EventEmitter{
     }
 
     deleteItem(index,caretPos,fieldValueAfterPressingDelete){
-         console.log("STA VRACA ''''''''''''''''''' ",this.sortableItems)
+         console.log("STA VRACA ''''''''''''''''''' ",this.sortableItems, " field value after deltet", fieldValueAfterPressingDelete)
         //console.log("Carret position is here  ", caretPos)
         //console.log("This is delete fucntion call", this.sortableItems[index])
-
+        if(index==0&&caretPos==0&&fieldValueAfterPressingDelete==""){
+            this.sortableItems[index]="";
+            //console.log("STA VRACA ,,,,,,,,,,, ------  ")
+        }
 
         if(caretPos==0 && index!=0){
             //console.log("BREEEEEEEEEEEEEEE ",fieldValueAfterPressingDelete)

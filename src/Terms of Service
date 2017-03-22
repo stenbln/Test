@@ -1,0 +1,31 @@
+ <!DOCTYPE html>
+<html>
+<head>
+<title>Sign-up & Login</title>
+<link rel="stylesheet" href="./signuplogin.css">
+<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+</head>
+
+<body>
+<div>
+ Terms of Service
+
+ These Terms of Service (“Terms”) govern your access to and use of our services.
+
+Privacy
+You understand that through your use of the Services you consent to the collection and use (as set forth in the Privacy Policy) of this information, including the transfer of this information to the United States, Ireland, and/or other countries for storage, processing and use by us or our affiliates.
+
+Content on our Services
+You are responsible for your use of the Services and for any Content you provide, including compliance with applicable laws, rules, and regulations. You should only provide Content that you are comfortable sharing with others.Any use or reliance on any Content or materials posted via the Services or obtained by you through the Services is at your own risk. We do not endorse, support, represent or guarantee the completeness, truthfulness, accuracy, or reliability of any Content or communications posted via the Services or endorse any opinions expressed via the Services. You understand that by using the Services, you may be exposed to Content that might be offensive, harmful, inaccurate or otherwise inappropriate, or in some cases, postings that have been mislabeled or are otherwise deceptive. All Content is the sole responsibility of the person who originated such Content. We may not monitor or control the Content posted via the Services and, we cannot take responsibility for such Content.
+
+Disclaimer
+We respects the intellectual property rights of others and expects users of the Services to do the same. We reserve the right to remove Content alleged to be infringing without prior notice, at our sole discretion, and without liability to you.
+</div>
+
+</body>
+
+</html>
+
+
+
+
